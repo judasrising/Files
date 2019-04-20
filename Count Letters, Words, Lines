@@ -1,0 +1,35 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#define N 30
+
+int main()
+{
+	char name[N];
+	printf("Enter file name: ");
+	gets(name);
+	
+	FILE *fp = fopen(name, "r");
+
+	if (fp == NULL) {
+		printf("Can not open the file.");
+		exit(1);
+	}
+	char ch;
+	int word = 0,letter=0,line=0;
+
+	while (!feof(fp))
+	{
+		ch = fgetc(fp);
+		if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
+			letter++;
+		if (ch == ' ' || ch=='\n')
+			word++;
+		if (ch == '\n')
+			line++;
+	}
+
+	printf("%d Letters\n%d Words\n%d Lines", letter, ++word, ++line);
+  
+	getch();
+}
