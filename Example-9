@@ -1,0 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#define N 30
+
+void insert(FILE *fp)
+{
+
+	int num, mark;
+	printf("Enter students' number: ");
+	scanf("%d", &num);
+
+	char name[N];
+	for (int i = 0; i < num; i++)
+	{
+		printf("Enter student-%d name: ", i + 1);
+		getchar();
+		gets(name);
+		printf("Enter student-%d mark: ", i + 1);
+		scanf("%d", &mark);
+
+		fprintf(fp, "Name: %s\t Mark: %d\n", name, mark);
+	}
+}
+int main()
+{
+	FILE *fptr = fopen("marks.txt", "a+");
+
+	if (fptr == NULL) {
+		printf("File can not open.");
+		exit(1);
+	}
+
+	insert(fptr);
+
+
+}
